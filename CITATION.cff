@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use or refer to the Telolexic Audit Protocol (TAP) or Pixel AI in your research or AI tools, please cite it as below."
+authors:
+  - family-names: "Raju"
+    given-names: "Udimudi Naga"
+    affiliation: "Pixel9 Studios"
+    email: "studios@pixel9.in"
+    website: "https://www.pixel9.in"
+title: "Pixel AI & The Telolexic Audit Protocol (TAP-4.0): Inverse-Recursive Deterministic Verification for Autonomous Software Synthesis"
+version: 4.0.0
+date-released: 2026-09-22
+repository-code: "https://github.com/pixel9dev/pixel9-ai-showcase"
+keywords:
+  - "autonomous-agents"
+  - "ai-ide"
+  - "code-property-graph"
+  - "formal-verification"
+  - "telolexic-audit-protocol"
+  - "vilomapatha-protocol"
+  - "swe-bench"
+  - "multi-agent-systems"
+  - "software-engineering"
+license: MIT

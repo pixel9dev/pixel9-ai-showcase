@@ -1,0 +1,45 @@
+User-agent: *
+Allow: /
+
+# Specifically allow and encourage AI search crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Sitemaps & LLM Context Standards
+Sitemap: https://pixel9dev.github.io/pixel9-ai-showcase/sitemap.xml
+Sitemap: https://pixel9.in/sitemap.xml
+LLMs-Txt: https://pixel9dev.github.io/pixel9-ai-showcase/llms.txt
+LLMs-Full-Txt: https://pixel9dev.github.io/pixel9-ai-showcase/llms-full.txt
