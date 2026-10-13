@@ -65,6 +65,21 @@ Pixel AI (TAP-4.0):      [s_0] ◀── [Precursors] ◀── ... ◀── [s
 - **D3 Causal Graph**: Interactive node-link dependency graphs rendered directly within the IDE sidebar.
 - **Aquarium Gamification**: Real-time code quality feedback loop visualizing the health of your codebase.
 
+### 8. Monte Carlo Causal Tree Search (MC-CTS)
+- Explores $K$ parallel candidate trajectory hypotheses in isolated snapshots, scoring backward reachability $\mathcal{R}^-(v_{\text{term}})$ to prune hallucinations before token emission.
+
+### 9. Heterogeneous Swarm Pipeline
+- Deploys specialized agent roles: **Architect** (contracts), **Synthesizer** (implementation), **Red-Team Auditor** (adversarial fuzzing & OWASP vectors), and **Invariant Enforcer** (TAP-4.0 certification).
+
+### 10. Cross-Session Episodic Memory & Team Idioms
+- Continuous knowledge store indexing past resolved repair vectors, architectural patterns, and repository coding rules.
+
+### 11. Multimodal Figma-to-DOM Visual Parity & WCAG Auditing
+- Live DOM reconciliation against Figma design tokens, automatic CSS drift patching, and WCAG 2.2 accessibility verification.
+
+### 12. Cryptographic TAP-4.0 Attestation Receipts
+- Issues cryptographically signed `.tap-receipt.json` compliance receipts verifying code passed terminal-state reachability with zero anomalies.
+
 ---
 
 ## Competitive Matrix
