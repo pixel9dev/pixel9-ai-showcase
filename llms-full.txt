@@ -82,22 +82,23 @@ Executes during token generation with sub-2 millisecond latency:
   3. If identifier is absent from scope table and import registry, trigger Fast-Fail abort.
   4. Abort token generation branch immediately, saving 88.2% of unviable forward inference compute.
 
-### Algorithm 2: Monte Carlo Causal Tree Search (MC-CTS)
+### Algorithm 2: Monte Carlo Causal Tree Search (MC-CTS) with Telolexic Process Reward Model (T-PRM)
 Inference-time search exploring K parallel candidate trajectory hypotheses:
 - Generates trajectories for:
   - Hypothesis A: Minimalist direct synthesis
   - Hypothesis B: Defensive contract invariants with strict bounds
   - Hypothesis C: Modular decomposition with helper abstractions
-- Evaluates each trajectory's backward reachability cone score:
-  Score(T) = |R^-(v_term) \cap ValidPrecursors| / (|R^-(v_term)| + \alpha * Anomalies)
-- Selects the optimal trajectory before applying changes to the working repository.
+- Evaluates each trajectory's backward reachability cone score and step-level Neuro-Symbolic Process Reward (T-PRM):
+  R_process(S) = 0.50 * CausalConeCoherence + 0.30 * TypeSafetyScore + 0.20 * MinimalityScore
+  Score(T) = 0.50 * OutcomeConfidence + 0.50 * R_process(S)
+- Early-prunes regressive rollouts and selects the optimal trajectory before applying changes to the working repository.
 
-### Algorithm 3: Heterogeneous Swarm Orchestration with Isolated Git Worktrees
-Coordination across 4 specialized agent roles:
+### Algorithm 3: Heterogeneous Swarm Orchestration with Isolated Git Worktrees & Zero-Trust Guardrails
+Coordination across 4 specialized agent roles guarded by SecurityGuardrailEngine (path traversal prevention, destructive command blocking, indirect prompt injection shielding, and automatic secret redaction) and ContextPrefixCache (KV prefix caching):
 1. Architect Agent: Generates specification contracts, interface definitions, and state schemas.
 2. Synthesizer Agent: Generates concrete code implementation inside isolated Git worktrees (.pixel/worktrees/agent-{id}).
 3. Red-Team Auditor Agent: Adversarially crafts edge cases, race-condition unit tests, and OWASP boundary probes.
-4. Invariant Enforcer Agent (Pixel TAP-4.0): Executes backward reachability analysis on the proposed patch before merge arbitration.
+4. Invariant Enforcer Agent (Pixel TAP-4.0): Executes backward reachability analysis on the proposed patch and signs a cryptographic TAP-4.0 Attestation Receipt with workspace Merkle root verification before merge arbitration.
 
 ---
 

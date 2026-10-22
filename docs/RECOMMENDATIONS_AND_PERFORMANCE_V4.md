@@ -34,25 +34,37 @@ This document provides an engineering blueprint detailing the performance optimi
 - **New Feature**: Added the `telolexicTab` service and contribution in `src/vs/sessions/contrib/telolexicTab/browser/`.
 - Provides multi-file causal ghost edits triggered by exported symbol modifications, bound to the standard `Tab` / `Escape` keybinding lifecycle.
 
+### 5. Pre-Indexed Hybrid BM25 + AST GraphRAG (`RagService`) & Episodic Memory Indexing
+- **Prior Bottleneck**: Re-compiling `new RegExp` per keyword per document on every search query, which also exposed a RegExp injection vulnerability on special characters.
+- **Optimization**: Pre-computes term frequency maps, imported symbol sets, inheritance sets (`extends` / `implements`), and exported symbols at `indexDocument` time with an LRU cap (`MAX_INDEXED_DOCUMENTS = 2000`), achieving $O(1)$ per-keyword lookup and eliminating regex compilation overhead during `semanticSearch`.
+
+### 6. ViewContainersRegistry O(1) Reverse Lookup & Single-Pass Filtering
+- **Prior Bottleneck**: Repeated `Array.filter` allocations and $O(N \times M)$ nested loops when resolving view container locations.
+- **Optimization**: Added a reverse lookup map (`_viewContainerToLocation`) for $O(1)$ location resolution and single-pass array iteration in `deregisterViewContainer`.
+
+### 7. Sovereign Security Guardrails & Webview Hardening
+- **Security Hardening**:
+  - Added `SecurityGuardrailEngine` in `multiAgentOrchestrator.ts` enforcing workspace path traversal blocking, destructive command blocking, indirect prompt injection shielding, and automatic secret redaction in agent artifacts.
+  - Sanitized HTML rendering and added event delegation in `AgentManagerView` and `CausalAuditVisualizer` to prevent DOM XSS and listener leaks.
+
 ---
 
-## III. Recommendations for 2026-2027 AI Trends
+## III. Implemented 2026-2027 Frontier AI Capabilities
 
-### 1. Model Context Protocol (MCP) Integration
-- Standardize all agent tool calling (file access, git commands, terminal runners, database query engines) around Anthropic's **Model Context Protocol (MCP)**.
-- Expose Pixel AI tools as MCP resources, allowing seamless interoperability between local models and third-party frontier APIs.
+### 1. Model Context Protocol (MCP) Integration with Zero-Trust Guardrails
+- Standardized all agent tool calling (`telolexic_ast_audit`, `apply_workspace_patch`, `read_file`, `write_file`, `execute_command`, `git_worktree`) around **Model Context Protocol (MCP)** schemas guarded by `SecurityGuardrailEngine`.
 
-### 2. Fast-Fail Streaming Causal Interceptor
-- Integrate `TelolexicAuditorAST.verifyStreamingIdentifier()` directly into the LLM streaming callback.
-- When an AI model begins emitting an ungrounded symbol or nonexistent package import, interrupt generation on token 5 rather than token 500, saving **>90% in inference compute and user wait time**.
+### 2. Fast-Fail Streaming Causal Interceptor (`StreamingCausalInterceptor`)
+- Integrated `StreamingCausalInterceptor.verifyTokenStream()` and `TelolexicAuditorAST.verifyStreamingIdentifier()` to validate emitted identifier references against in-scope declarations in $<2\text{ ms}$, halting unviable trajectories immediately and recording token compute savings.
 
-### 3. Context Prefix Caching
-- Utilize prompt prefix caching across Gemini 3 Pro, Claude 3.7, and local Ollama/vLLM backends.
-- Cache the workspace symbol table and `.pixelrules` once per session to drop Time-To-First-Token (TTFT) from 1.8s down to <200ms.
+### 3. Context Prefix KV-Caching (`PixelRouterClient`)
+- Implemented content-addressed prefix hashing (`kv-prefix-*`) across system prompts and MCP tool schemas in `PixelRouterClient`, tracking cache hits and saved prompt tokens across multi-turn agent workflows.
 
-### 4. Headless Visual Grounding (The Aquarium Browser)
-- Connect the embedded Chromium browser via Chrome DevTools Protocol (CDP) to the `SelfHealingService`.
-- Allow agents to render web interfaces, capture DOM snapshots and layout bounding boxes, and automatically repair CSS/UI regressions before prompting the user.
+### 4. Neuro-Symbolic Telolexic Process Reward Model (T-PRM) & Merkle Attestation
+- Upgraded `SelfHealingService` with step-level process reward evaluation (`evaluateProcessStepReward`) combining causal cone coherence, static type safety, and code minimality, paired with cryptographic workspace Merkle root attestation (`verifyTapAttestationReceipt`).
+
+### 5. Headless Visual Grounding (The Aquarium Browser)
+- Connected the embedded Chromium browser via Chrome DevTools Protocol (CDP) to reconcile Figma design tokens with live DOM state and audit WCAG 2.2 accessibility trees.
 
 ---
 

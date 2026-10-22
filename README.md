@@ -85,15 +85,17 @@ $$\vec{\Delta}_{\text{repair}} = \left( v_{\text{fault}}, \text{file}, \text{lin
 - Traverses unified AST, CFG, CDG, and DDG structures backward.
 - Zero-tolerance anomaly detection for physics violations, dead code, and type mismatches.
 
-### 2. Monte Carlo Causal Tree Search (MC-CTS)
+### 2. Monte Carlo Causal Tree Search (MC-CTS) & Neuro-Symbolic Process Reward Model (T-PRM)
 - Explores $K$ parallel candidate trajectory hypotheses (minimal synthesis, defensive invariants, modular decomposition) in isolated workspace snapshots.
-- Scores backward reachability cones $\mathcal{R}^-(v_{\text{term}})$ dynamically, pruning unviable branches before committing tokens to disk.
+- Evaluates step-level process rewards via the **Telolexic Process Reward Model (T-PRM)** combining causal cone coherence (50%), static type safety (30%), and code minimality (20%), pruning regressive branches early.
 
-### 3. Heterogeneous Swarm Pipeline & Specialized Roles
+### 3. Heterogeneous Swarm Pipeline, Prefix KV-Caching & Zero-Trust Guardrails
 - **Architect Agent** (`claude-5-opus` / `gemini-pro`): Decomposes requirements into interface contracts and specs.
 - **Synthesizer Agent** (`claude-3-7-sonnet` / `deepseek-coder`): Writes clean implementations in dedicated Git worktrees.
 - **Red-Team Auditor Agent** (`deepseek-r1`): Adversarially crafts edge cases, concurrency race-condition tests, and OWASP fuzzing vectors.
-- **Invariant Enforcer Agent** (`pixel-tap-4.0`): Formally certifies terminal reachability before atomic merge.
+- **Invariant Enforcer Agent** (`pixel-tap-4.0`): Formally certifies terminal reachability and emits Merkle-root signed `.tap-receipt.json` certificates.
+- **Sovereign Security Guardrail Engine**: Enforces workspace path boundary validation, blocks destructive shell commands, shields against indirect prompt injection in repository files, and redacts leaked secrets automatically.
+- **Context Prefix KV-Caching**: Content-addressed system prompt and MCP tool schema prefix caching reduces Time-To-First-Token (TTFT) and tracks token compute savings.
 
 ### 4. Closed-Loop Autonomous Self-Healing
 - Synthesizes deterministic repair vectors isolating exact failure coordinates.
@@ -109,9 +111,9 @@ $$\vec{\Delta}_{\text{repair}} = \left( v_{\text{fault}}, \text{file}, \text{lin
 - Edge-quantized Small Language Model (SLM) generates speculative ghost text completions at sub-15ms latency.
 - Validates reachability anchors before keystrokes settle on screen.
 
-### 7. Cross-Session Codebase GraphRAG & Episodic Memory
-- Continuously indexes past verified repair patterns, architectural decisions, and bug resolutions.
-- Automatically enforces team coding idioms (e.g., "Always use Zod schemas", "Never use default exports").
+### 7. Pre-Indexed Hybrid BM25 + AST GraphRAG & Episodic Memory
+- Pre-computes term frequencies, imported symbols, inheritance hierarchies, and exported symbols for $O(1)$ hybrid BM25 + GraphRAG retrieval.
+- Continuously indexes past verified repair patterns, architectural decisions, and bug resolutions with deterministic team coding idiom compliance auditing (`checkIdiomCompliance`).
 
 ### 8. Interactive D3.js Causal Flow Visualizer & Aquarium
 - **D3 Causal Graph**: Interactive node-link dependency graphs rendered directly within the IDE sidebar.

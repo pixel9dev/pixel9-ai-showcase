@@ -413,11 +413,11 @@
       </div>
       <div class="card">
         <h3>EU AI Act & NIST Governance</h3>
-        <p>Every synthesized module automatically emits an immutable, cryptographically signed <code>.tap-receipt.json</code> proving formal inverse grounding, satisfying EU AI Act Title III Article 14.</p>
+        <p>Every synthesized module automatically emits an immutable, Merkle-root signed <code>.tap-receipt.json</code> verified by <code>verifyTapAttestationReceipt()</code>, satisfying EU AI Act Title III Article 14.</p>
       </div>
       <div class="card">
-        <h3>100% Offline Sovereign Air-Gap</h3>
-        <p>Zero dependency on external cloud LLMs. Runs completely locally on consumer GPUs and on-premise clusters via quantized SLMs and Ollama/vLLM with zero corporate code exfiltration.</p>
+        <h3>100% Offline Sovereign &amp; Zero-Trust</h3>
+        <p>Runs locally via quantized SLMs and Ollama/vLLM, guarded by <code>SecurityGuardrailEngine</code> (blocking path traversal, destructive commands, prompt injection, and secret leaks).</p>
       </div>
       <div class="card">
         <h3>Atomic Git Worktree Isolation</h3>

@@ -34,18 +34,18 @@ $$\mathcal{R}^-(v_{\text{term}}) = \{ u \in V \mid \exists \text{ path from } u 
 ### 4. Deterministic Repair Vector ($\vec{\Delta}_{\text{repair}}$)
 A coordinate tuple $\vec{\Delta}_{\text{repair}} = (v_{\text{fault}}, \text{file}, \text{line}, \text{precursor}_{\text{expected}}, \text{patch}_{\text{suggested}})$ that pinpoints the exact AST node and precursor needed to heal a failed verification attempt.
 
-### 5. Monte Carlo Causal Tree Search (MC-CTS)
-An inference-time search engine that explores $K$ parallel candidate trajectory hypotheses in isolated Git worktrees, scores each rollout backward against the CPG reachability cone, and prunes unviable trajectories before commit.
+### 5. Monte Carlo Causal Tree Search (MC-CTS) & Telolexic Process Reward Model (T-PRM)
+An inference-time search engine that explores $K$ parallel candidate trajectory hypotheses in isolated Git worktrees, evaluates step-level Neuro-Symbolic Process Rewards (`causalConeCoherence`, `typeSafetyScore`, `minimalityScore`), scores each rollout backward against the CPG reachability cone, and prunes regressive trajectories before commit.
 
-### 6. Heterogeneous Swarm Architecture
-A 4-role multi-agent coordination pipeline running across up to 8 parallel Git worktrees:
+### 6. Heterogeneous Swarm Architecture & Sovereign Security Guardrails
+A 4-role multi-agent coordination pipeline running across up to 8 parallel Git worktrees guarded by `SecurityGuardrailEngine` (zero-trust path boundary validation, destructive shell command blocking, indirect prompt injection shielding, and automatic secret redaction) and `ContextPrefixCache` (content-addressed KV prefix caching):
 1. **Architect Agent**: Synthesizes specifications and interface contracts.
 2. **Synthesizer Agent**: Implements concrete code inside isolated worktrees.
 3. **Red-Team Auditor Agent**: Writes adversarial fuzz tests and OWASP edge-case probes.
 4. **Invariant Enforcer Agent**: Formally verifies backward reachability and soundness.
 
-### 7. Cryptographic TAP Attestation Receipt
-An immutable, signed JSON certificate (`.tap-receipt.json`) containing terminal anchor digests, timestamp, agent ID, and anomaly counts, certifying regulatory and enterprise governance compliance.
+### 7. Cryptographic TAP Attestation Receipt with Workspace Merkle Root
+An immutable, signed JSON certificate (`.tap-receipt.json`) containing terminal anchor digests, workspace file Merkle root (`merkleWorkspaceRoot`), timestamp, agent ID, and anomaly counts, verifiable via `verifyTapAttestationReceipt()` for regulatory and enterprise governance compliance.
 
 ---
 
